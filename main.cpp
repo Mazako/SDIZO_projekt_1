@@ -25,6 +25,7 @@ void simpleDoubleLinkedListTest() {
     list->pop();
     list->printList();
     list->printReversed();
+    delete list;
 }
 
 void simpleDynamicArrayTest() {

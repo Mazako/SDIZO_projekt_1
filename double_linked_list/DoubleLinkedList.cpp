@@ -32,6 +32,7 @@ int DoubleLinkedList::pop() {
     if (size == 1) {
         int data = head->data;
         delete head;
+        head = nullptr;
         return data;
     }
     Node* nodePtr = head;
@@ -41,6 +42,7 @@ int DoubleLinkedList::pop() {
     int data = nodePtr->next->data;
     delete nodePtr->next;
     nodePtr->next = nullptr;
+    size--;
     return data;
 }
 
@@ -55,6 +57,9 @@ void DoubleLinkedList::printList() {
 
 void DoubleLinkedList::printReversed() {
     auto* nodePtr = head;
+    if (nodePtr == nullptr) {
+        return;
+    }
     while (nodePtr->next != nullptr) {
         nodePtr = nodePtr->next;
     }
