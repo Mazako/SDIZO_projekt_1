@@ -19,7 +19,7 @@ public:
 
     int removeAt(int index);
 
-    int addAt(int index);
+    void addAt(int index, int data);
 
     void printList();
 

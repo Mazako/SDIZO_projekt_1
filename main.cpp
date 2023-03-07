@@ -1,30 +1,30 @@
 #include <iostream>
 #include "dynamic_array/DynamicArray.h"
 #include "double_linked_list/DoubleLinkedList.h"
+#include "heap/MaxHeap.h"
 void simpleDynamicArrayTest();
 
 void simpleDoubleLinkedListTest();
 
+void simpleMaxHeapTest();
+
 using namespace std;
 
 int main() {
-    simpleDoubleLinkedListTest();
+    simpleMaxHeapTest();
 }
 
 void simpleDoubleLinkedListTest() {
-    auto* list = new DoubleLinkedList();
+    auto *list = new DoubleLinkedList();
     list->push(1);
     list->push(2);
     list->push(3);
+    list->push(4);
+    list->addAt(5, 5);
+//    list->removeAt(4);
     list->printList();
     list->printReversed();
-    list->pop();
-    list->printList();
-    list->printReversed();
-    list->pop();
-    list->pop();
-    list->printList();
-    list->printReversed();
+
     delete list;
 }
 
@@ -44,4 +44,11 @@ void simpleDynamicArrayTest() {
     array->printArray();
 
     delete array;
+}
+
+void simpleMaxHeapTest() {
+    int a[] = {1, 32, 2, 12, 93, 4};
+    auto* heap = new MaxHeap(a, 6);
+    heap->printHeap();
+//    delete heap;
 }
