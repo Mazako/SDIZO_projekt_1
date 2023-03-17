@@ -111,8 +111,7 @@ void DoubleLinkedList::addAt(int index, int data) {
     if (index > size) {
         throw std::invalid_argument("List index out of bound");
     }
-    if (index == 0)
-    {
+    if (index == 0) {
         unshift(data);
         return;
     }
@@ -121,7 +120,7 @@ void DoubleLinkedList::addAt(int index, int data) {
     for (int i = 0; i < index - 1; i++) {
         headPtr = headPtr->next;
     }
-   if (headPtr->next == nullptr) {
+    if (headPtr->next == nullptr) {
         headPtr->next = newNode;
         newNode->previous = headPtr;
     } else {

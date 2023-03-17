@@ -7,10 +7,12 @@ public:
     int data;
     BstNode *left;
     BstNode *right;
+    BstNode *parent;
 
     BstNode();
 
     BstNode(int data);
+
 };
 
 

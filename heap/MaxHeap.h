@@ -22,7 +22,7 @@ private:
 public:
     MaxHeap();
 
-    MaxHeap(int* array, int n);
+    MaxHeap(int *array, int n);
 
     ~MaxHeap();
 

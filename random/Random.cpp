@@ -5,7 +5,3 @@
 #include <cstdlib>
 #include <ctime>
 #include "Random.h"
-int Random::getRandomInt() {
-    std::srand((unsigned ) std::time(NULL));
-    return std::rand();
-}

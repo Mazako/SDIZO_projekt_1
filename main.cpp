@@ -2,16 +2,21 @@
 #include "dynamic_array/DynamicArray.h"
 #include "double_linked_list/DoubleLinkedList.h"
 #include "heap/MaxHeap.h"
+#include "binary_search_tree/BinarySearchTree.h"
+#include "binary_search_tree/bst_node/BstNode.h"
+
 void simpleDynamicArrayTest();
 
 void simpleDoubleLinkedListTest();
 
 void simpleMaxHeapTest();
 
+void simpleBinaryTreeTest();
+
 using namespace std;
 
 int main() {
-    simpleMaxHeapTest();
+    simpleBinaryTreeTest();
 }
 
 void simpleDoubleLinkedListTest() {
@@ -48,7 +53,27 @@ void simpleDynamicArrayTest() {
 
 void simpleMaxHeapTest() {
     int a[] = {1, 32, 2, 12, 93, 4};
-    auto* heap = new MaxHeap(a, 6);
+    auto *heap = new MaxHeap(a, 6);
     heap->printHeap();
 //    delete heap;
+}
+
+void simpleBinaryTreeTest() {
+    /*
+     *                  100
+     *               10         200
+     *                   30
+     *
+     */
+    auto *bst = new BinarySearchTree();
+    bst->insertNode(100);
+    bst->insertNode(10);
+    bst->insertNode(200);
+    bst->insertNode(30);
+    bst->insertNode(12);
+    bst->insertNode(1);
+    bst->insertNode(1);
+    bst->printTree(0, 5);
+
+
 }

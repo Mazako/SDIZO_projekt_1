@@ -5,10 +5,14 @@
 class Random {
 public:
     static int getRandomInt();
+
     static int getRandomInt(int max);
+
     static int getRandomInt(int min, int max);
-    static int* getRandomIntArray(int* array, int min, int max);
-    static int* getRandomIntArray(int* array)
+
+    static int *getRandomIntArray(int *array, int min, int max);
+
+    static int *getRandomIntArray(int *array);
 };
 
 

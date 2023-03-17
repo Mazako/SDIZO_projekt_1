@@ -27,21 +27,21 @@ void MaxHeap::reallocate(int newSize) {
         this->size--;
         return;
     }
-    int* tmpArray = new int[newSize];
+    int *tmpArray = new int[newSize];
     for (int i = 0; i < size; i++) {
         tmpArray[i] = array[i];
     }
-    int* arrayPtr = array;
+    int *arrayPtr = array;
     this->array = tmpArray;
     delete arrayPtr;
     this->size = newSize;
 }
 
-int MaxHeap::getMax() { return array[0];}
+int MaxHeap::getMax() { return array[0]; }
 
 void MaxHeap::insert(int data) {
     if (size == 0) {
-        array = new int [1];
+        array = new int[1];
         array[0] = data;
         size++;
         return;
@@ -51,7 +51,7 @@ void MaxHeap::insert(int data) {
     array[i] = data;
     while (i > 0 && array[parent(i)] < array[i]) {
         swap(&array[parent(i)], &array[i]);
-        i  = parent(i);
+        i = parent(i);
     }
 }
 
