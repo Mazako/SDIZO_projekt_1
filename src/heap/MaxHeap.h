@@ -26,11 +26,13 @@ public:
 
     ~MaxHeap();
 
-    inline int getMax();
+    int getMax();
 
     void insert(int data);
 
     int removeMax();
+
+    int getSize();
 
     void printHeap();
 

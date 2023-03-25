@@ -104,6 +104,7 @@ void DoubleLinkedList::unshift(int data) {
         head->previous = newNode;
         head = newNode;
     }
+    size++;
 }
 
 //COMPLEXITY: O(N)
@@ -156,4 +157,15 @@ int DoubleLinkedList::removeAt(int index) {
         size--;
     }
     return data;
+}
+
+int DoubleLinkedList::get(int index) {
+    auto *nodePtr = this->head;
+    for (int i = 0; i < index; i++) {
+        nodePtr = nodePtr->next;
+        if (nodePtr == nullptr) {
+            throw std::invalid_argument("Array index out of bound");
+        }
+    }
+    return nodePtr->data;
 }

@@ -55,7 +55,6 @@ void printMenuItems() {
     std::cout << "Wybierz opcje:" << std::endl;
 }
 
-
 void startDynamicArrayClient() {
     auto *dynamicArrayClient = new DynamicArrayClient();
     dynamicArrayClient->startMainLoop();

@@ -17,6 +17,8 @@ public:
 
     int shift();
 
+    int get(int index);
+
     int removeAt(int index);
 
     void addAt(int index, int data);

@@ -59,7 +59,6 @@ void DynamicArrayClient::printMenu() {
 }
 
 void DynamicArrayClient::add() {
-    std::cout << "XD";
 }
 
 void DynamicArrayClient::addAtIndex() {

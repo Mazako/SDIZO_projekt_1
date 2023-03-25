@@ -23,17 +23,20 @@ MaxHeap::~MaxHeap() {
 }
 
 void MaxHeap::reallocate(int newSize) {
-    if (newSize == 0) {
-        this->size--;
-        return;
+    int *tmpArray = nullptr;
+
+    if (newSize > 0) {
+        tmpArray = new int[newSize];
+        for (int i = 0; i < newSize; i++) {
+            tmpArray[i] = array[i];
+        }
     }
-    int *tmpArray = new int[newSize];
-    for (int i = 0; i < size; i++) {
-        tmpArray[i] = array[i];
+
+    if (this->array != nullptr) {
+        delete[] this->array;
     }
-    int *arrayPtr = array;
+
     this->array = tmpArray;
-    delete arrayPtr;
     this->size = newSize;
 }
 
@@ -81,7 +84,7 @@ void MaxHeap::heapify(int i) {
 
 int MaxHeap::removeMax() {
     if (size == 0) {
-        new std::logic_error("Stack is empty");
+        throw std::logic_error("Heap is empty");
     }
     int data = array[0];
 
@@ -97,5 +100,9 @@ MaxHeap::MaxHeap(int *array, int n) {
     for (int i = n / 2; i >= 0; i--) {
         heapify(i);
     }
+}
+
+int MaxHeap::getSize() {
+    return this->size;
 }
 
