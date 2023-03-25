@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <queue>
 #include "BinarySearchTree.h"
 
 BinarySearchTree::BinarySearchTree() {
@@ -35,40 +36,29 @@ void BinarySearchTree::insertNode(int data) {
     }
 }
 
-void BinarySearchTree::deleteNode(int data) { this->head = deleteNodeRecursively(this->head, data); }
-
-BstNode *BinarySearchTree::deleteNodeRecursively(BstNode *root, int data) {
-    if (root == nullptr) {
-        return root;
+void BinarySearchTree::deleteNode(int data) {
+    BstNode *nodeToDelete = findNode(data);
+    if (nodeToDelete == nullptr) {
+        throw std::invalid_argument("Key does not exist");
     }
-    if (data > root->data) {
-        root->right = deleteNodeRecursively(root->right, data);
-    } else if (data < root->data) {
-        root->left = deleteNodeRecursively(root->left, data);
+    if (nodeToDelete->left == nullptr) {
+        transplant(nodeToDelete, nodeToDelete->right);
+    } else if (nodeToDelete->left != nullptr) {
+        transplant(nodeToDelete, nodeToDelete->left);
     } else {
-        if (root->left == nullptr && root->right == nullptr) {
-            delete root;
-            return nullptr;
-        } else if (root->left == nullptr) {
-            BstNode *tmp = root->right;
-            tmp->parent = root->parent;
-            root = nullptr;
-            delete root;
-            return tmp;
-        } else if (root->right == nullptr) {
-            BstNode *tmp = root->left;
-            tmp->parent = root->parent;
-            root = nullptr;
-            delete root;
-            return tmp;
-        } else {
-            BstNode* minNode = findMin(root->right);
-            root->data = minNode->data;
-            root->right = deleteNodeRecursively(root->right, minNode->data);
+        BstNode *successor = findMin(nodeToDelete->right);
+        if (nodeToDelete->right != successor) {
+            transplant(successor, successor->right);
+            successor->right = nodeToDelete->right;
+            successor->right->parent = nodeToDelete;
         }
-        return root;
+        transplant(nodeToDelete, successor);
+        successor->left = nodeToDelete->left;
+        successor->left->parent = successor;
+        delete nodeToDelete;
     }
 }
+
 
 BstNode *BinarySearchTree::findMax(BstNode *head) {
     while (head->right != nullptr) {
@@ -99,22 +89,89 @@ void BinarySearchTree::printInorderRecursively(BstNode *node) {
 
 }
 
-void BinarySearchTree::printTreeRecursively(BstNode *root, int space, int height) {
-    if (root == nullptr) {
-        return;
+void BinarySearchTree::transplant(BstNode *nodeToBeReplaced, BstNode *child) {
+    if (nodeToBeReplaced->parent == nullptr) {
+        this->head = child;
+    } else if (nodeToBeReplaced->parent->left == nodeToBeReplaced) {
+        nodeToBeReplaced->parent->left = child;
+    } else {
+        nodeToBeReplaced->parent->right = child;
+    }
+    if (child != nullptr) {
+        child->parent = nodeToBeReplaced->parent;
     }
 
-    space += height;
-
-    printTreeRecursively(root->right, space, height);
-
-    std::cout << std::endl;
-    for (int i = height; i < space; i++) {
-        std::cout << " ";
-    }
-    std::cout << root->data << std::endl;
-
-    printTreeRecursively(root->left, space, height);
 }
 
-void BinarySearchTree::printTree(int indent, int h) { printTreeRecursively(this->head, indent, h);}
+BstNode *BinarySearchTree::findNode(int data) {
+    BstNode *nodePtr = this->head;
+    while (this->head != nullptr) {
+        if (data > nodePtr->data) {
+            nodePtr = nodePtr->right;
+        } else if (data < nodePtr->data) {
+            nodePtr = nodePtr->left;
+        } else {
+            return nodePtr;
+        }
+    }
+    return nullptr;
+}
+
+
+void BinarySearchTree::printTreeDiagram() {
+    BstNode *root = this->head;
+    if (root == nullptr) {
+        std::cout << "The tree is empty." << std::endl;
+        return;
+    }
+    std::queue<BstNode *> q;
+    q.push(root);
+    int depth = treeDepth(root);
+    int level = 1;
+    while (!q.empty()) {
+        int nodeCount = q.size();
+        int space = std::pow(2, depth - level + 1) - 1;
+        while (nodeCount > 0) {
+            BstNode *node = q.front();
+            q.pop();
+
+            for (int i = 0; i < space; i++) {
+                std::cout << " ";
+            }
+            if (node == nullptr) {
+                std::cout << " ";
+                q.push(nullptr);
+                q.push(nullptr);
+            } else {
+                std::cout << node->data;
+                q.push(node->left);
+                q.push(node->right);
+            }
+            for (int i = 0; i < space; i++) {
+                std::cout << " ";
+            }
+            nodeCount--;
+        }
+        std::cout << std::endl;
+        level++;
+        bool isEnd = true;
+        std::queue<BstNode *> tempQueue = q;
+        while (!tempQueue.empty()) {
+            if (tempQueue.front() != nullptr) {
+                isEnd = false;
+                break;
+            }
+            tempQueue.pop();
+        }
+        if (isEnd) {
+            break;
+        }
+    }
+}
+
+int BinarySearchTree::treeDepth(BstNode *root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    return 1 + std::max(treeDepth(root->left), treeDepth(root->right));
+}

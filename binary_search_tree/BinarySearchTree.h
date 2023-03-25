@@ -20,9 +20,11 @@ public:
 
     void printInorder();
 
-    void printTree(int ident = 0, int h = 10);
+    BstNode *findNode(int data);
+
+    void printTreeDiagram();
 private:
-    BstNode *deleteNodeRecursively(BstNode *root, int data);
+    void transplant(BstNode *nodeToBeReplaced, BstNode* child);
 
     BstNode *findMax(BstNode *head);
 
@@ -30,7 +32,7 @@ private:
 
     void printInorderRecursively(BstNode *node);
 
-    void printTreeRecursively(BstNode* root, int indent, int height);
+    int treeDepth(BstNode *root);
 };
 
 
