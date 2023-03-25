@@ -4,8 +4,6 @@
 
 class DynamicArray {
 private:
-    int size;
-    int *array;
 
     int reallocate(int newSize);
 
@@ -21,6 +19,9 @@ public:
     ~DynamicArray();
 
     void printArray();
+
+    int size;
+    int *array;
 };
 
 

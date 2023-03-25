@@ -13,7 +13,7 @@ DynamicArray::~DynamicArray() {
 
 void DynamicArray::add(int value) {
     array[size++] = value;
-    DynamicArray::reallocate(size);
+    DynamicArray::reallocate(size + 1);
 }
 
 int DynamicArray::remove(int index) {
@@ -34,11 +34,12 @@ int DynamicArray::remove(int index) {
 
 int DynamicArray::reallocate(int newSize) {
     int *tmpArray = new int[newSize];
+    int *oldArray = this->array;
     for (int i = 0; i < size; i++) {
         tmpArray[i] = array[i];
     }
-    delete[] array;
-    array = tmpArray;
+    this->array = tmpArray;
+    delete[] oldArray;
 }
 
 void DynamicArray::addAt(int index, int value) {
