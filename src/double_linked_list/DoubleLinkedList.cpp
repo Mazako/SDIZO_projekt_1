@@ -169,3 +169,4 @@ int DoubleLinkedList::get(int index) {
     }
     return nodePtr->data;
 }
+

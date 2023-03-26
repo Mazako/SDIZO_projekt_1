@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "dynamic_array/client/DynamicArrayClient.h"
+#include "double_linked_list/client/DoubleLinkedListClient.h"
 
 void startDynamicArrayClient();
 
@@ -36,7 +37,7 @@ int main() {
         getchar();
         option--;
         if (option >= menuItems.size()) {
-            std::cout << "nie ma takiej opcji." << std::endl;
+            std::cerr << "nie ma takiej opcji." << std::endl;
             continue;
         }
         selectedFunction = menuItems[option];
@@ -62,7 +63,9 @@ void startDynamicArrayClient() {
 }
 
 void startDoubleLinkedListClient() {
-
+    auto *doubleLinkedListClient = new DoubleLinkedListClient();
+    doubleLinkedListClient->startMainLoop();
+    delete doubleLinkedListClient;
 }
 
 void startHeapClient() {

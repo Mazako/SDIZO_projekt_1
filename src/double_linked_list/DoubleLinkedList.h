@@ -7,6 +7,7 @@ class DoubleLinkedList {
     Node *head = nullptr;
     int size = 0;
 public:
+
     ~DoubleLinkedList();
 
     void push(int data);

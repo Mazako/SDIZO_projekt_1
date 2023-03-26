@@ -1,13 +1,14 @@
-//
-// Created by micha on 21.03.2023.
-//
 #include <iostream>
+#include <queue>
+#include <valarray>
 #include "RedBlackTree.h"
 
 RedBlackTree::RedBlackTree() {
     this->nullNode = new RedBlackNode(0, 'b');
-    this->root = new RedBlackNode();
-    this->root->parent = this->nullNode;
+    this->root = nullNode;
+    this->root->parent = nullNode;
+    this->root->left = nullNode;
+    this->root->right = nullNode;
 
 }
 
@@ -47,8 +48,16 @@ void RedBlackTree::rightRotate(RedBlackNode *node) {
 
 void RedBlackTree::insert(int key) {
     RedBlackNode *newNode = new RedBlackNode(key, 'r');
+    if (this->root == nullNode) {
+        this->root = newNode;
+        this->root->parent = nullNode;
+        this->root->right = nullNode;
+        this->root->left = nullNode;
+        insertFixup(this->root);
+        return;
+    }
     RedBlackNode *nodePtr = this->root;
-    RedBlackNode *parent = nullptr;
+    RedBlackNode *parent = this->nullNode;
     while (nodePtr != this->nullNode) {
         parent = nodePtr;
         if (key > nodePtr->key) {
@@ -121,7 +130,7 @@ void RedBlackTree::redBlackTransplant(RedBlackNode *node, RedBlackNode *child) {
 
 void RedBlackTree::deleteNode(int key) {
     RedBlackNode *nodeToDelete = findNode(key);
-    if (nodeToDelete == nullptr) {
+    if (nodeToDelete == nullNode) {
         throw std::invalid_argument("Key doesn't exist");
     }
     RedBlackNode *originalNode = nodeToDelete;
@@ -130,7 +139,7 @@ void RedBlackTree::deleteNode(int key) {
     if (nodeToDelete->left == this->nullNode) {
         x = nodeToDelete->right;
         redBlackTransplant(nodeToDelete, nodeToDelete->right);
-    } else if (nodeToDelete->left != this->nullNode) {
+    } else if (nodeToDelete->right == this->nullNode) {
         x = nodeToDelete->left;
         redBlackTransplant(nodeToDelete, nodeToDelete->left);
     } else {
@@ -142,11 +151,11 @@ void RedBlackTree::deleteNode(int key) {
         } else {
             redBlackTransplant(originalNode, originalNode->right);
             originalNode->right = nodeToDelete->right;
-            originalNode->right->parent = originalNode->right;
+            originalNode->right->parent = originalNode;
         }
         redBlackTransplant(nodeToDelete, originalNode);
         originalNode->left = nodeToDelete->left;
-        originalNode->left->parent = originalNode->left;
+        originalNode->left->parent = originalNode;
         originalNode->color = nodeToDelete->color;
     }
     if (originalColor == 'b') {
@@ -157,7 +166,7 @@ void RedBlackTree::deleteNode(int key) {
 }
 
 RedBlackNode *RedBlackTree::findMin(RedBlackNode *node) {
-    while (node->left != nullptr) {
+    while (node->left != nullNode) {
         node = node->left;
     }
     return node;
@@ -165,7 +174,7 @@ RedBlackNode *RedBlackTree::findMin(RedBlackNode *node) {
 
 RedBlackNode *RedBlackTree::findNode(int key) {
     RedBlackNode *nodePtr = this->root;
-    while (nodePtr != nullptr) {
+    while (nodePtr != nullNode) {
         if (key > nodePtr->key) {
             nodePtr = nodePtr->right;
         } else if (key < nodePtr->key) {
@@ -180,7 +189,7 @@ RedBlackNode *RedBlackTree::findNode(int key) {
 void RedBlackTree::deleteFixup(RedBlackNode *node) {
     while (node != this->root && node->color == 'b') {
         if (node == node->parent->left) {
-            RedBlackNode *sibling = node->parent->left;
+            RedBlackNode *sibling = node->parent->right;
             if (sibling->color == 'r') {
                 sibling->color = 'b';
                 node->parent->color = 'r';
@@ -204,7 +213,7 @@ void RedBlackTree::deleteFixup(RedBlackNode *node) {
                 node = this->root;
             }
         } else {
-            RedBlackNode *sibling = node->parent->right;
+            RedBlackNode *sibling = node->parent->left;
             if (sibling->color == 'r') {
                 sibling->color = 'b';
                 node->parent->color = 'r';
@@ -230,4 +239,70 @@ void RedBlackTree::deleteFixup(RedBlackNode *node) {
         }
     }
     node->color = 'b';
+}
+
+RedBlackNode *RedBlackTree::findMax(RedBlackNode *node) {
+    while (node->right != nullNode) {
+        node = node->right;
+    }
+    return node;
+}
+
+int RedBlackTree::treeDepth(RedBlackNode *root) {
+    if (root == nullNode) {
+        return 0;
+    }
+    return 1 + std::max(treeDepth(root->left), treeDepth(root->right));
+}
+
+void RedBlackTree::printTreeDiagram() {
+    RedBlackNode *rootPtr = this->root;
+    if (rootPtr == nullNode) {
+        std::cout << "The tree is empty." << std::endl;
+        return;
+    }
+    std::queue<RedBlackNode *> q;
+    q.push(rootPtr);
+    int depth = treeDepth(rootPtr);
+    int level = 1;
+    while (!q.empty()) {
+        int nodeCount = q.size();
+        int space = std::pow(2, depth - level + 1) - 1;
+        space += 1;
+        while (nodeCount > 0) {
+            RedBlackNode *node = q.front();
+            q.pop();
+
+            for (int i = 0; i < space; i++) {
+                std::cout << " ";
+            }
+            if (node == nullNode) {
+                std::cout << " ";
+                q.push(nullNode);
+                q.push(nullNode);
+            } else {
+                std::cout << node->key << ":" << node->color;
+                q.push(node->left);
+                q.push(node->right);
+            }
+            for (int i = 0; i < space; i++) {
+                std::cout << " ";
+            }
+            nodeCount--;
+        }
+        std::cout << std::endl;
+        level++;
+        bool isEnd = true;
+        std::queue<RedBlackNode *> tempQueue = q;
+        while (!tempQueue.empty()) {
+            if (tempQueue.front() != nullNode) {
+                isEnd = false;
+                break;
+            }
+            tempQueue.pop();
+        }
+        if (isEnd) {
+            break;
+        }
+    }
 }

@@ -1,6 +1,3 @@
-//
-// Created by micha on 07.03.2023.
-//
 #include <iostream>
 #include <cmath>
 #include <iomanip>
@@ -43,7 +40,7 @@ void BinarySearchTree::deleteNode(int data) {
     }
     if (nodeToDelete->left == nullptr) {
         transplant(nodeToDelete, nodeToDelete->right);
-    } else if (nodeToDelete->left != nullptr) {
+    } else if (nodeToDelete->right == nullptr) {
         transplant(nodeToDelete, nodeToDelete->left);
     } else {
         BstNode *successor = findMin(nodeToDelete->right);
@@ -105,7 +102,7 @@ void BinarySearchTree::transplant(BstNode *nodeToBeReplaced, BstNode *child) {
 
 BstNode *BinarySearchTree::findNode(int data) {
     BstNode *nodePtr = this->head;
-    while (this->head != nullptr) {
+    while (nodePtr != nullptr) {
         if (data > nodePtr->data) {
             nodePtr = nodePtr->right;
         } else if (data < nodePtr->data) {
@@ -174,4 +171,16 @@ int BinarySearchTree::treeDepth(BstNode *root) {
         return 0;
     }
     return 1 + std::max(treeDepth(root->left), treeDepth(root->right));
+}
+
+BinarySearchTree::~BinarySearchTree() {
+    deletePostOrder(this->head);
+}
+
+void BinarySearchTree::deletePostOrder(BstNode *node) {
+    if (node != nullptr) {
+        deletePostOrder(node->left);
+        deletePostOrder(node->right);
+        delete node;
+    }
 }

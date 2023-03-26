@@ -23,16 +23,21 @@ public:
     BstNode *findNode(int data);
 
     void printTreeDiagram();
-private:
-    void transplant(BstNode *nodeToBeReplaced, BstNode* child);
+
+    int treeDepth(BstNode *root);
 
     BstNode *findMax(BstNode *head);
 
     BstNode *findMin(BstNode *head);
 
+
+private:
+    void transplant(BstNode *nodeToBeReplaced, BstNode* child);
+
     void printInorderRecursively(BstNode *node);
 
-    int treeDepth(BstNode *root);
+    void deletePostOrder(BstNode* node);
+
 };
 
 

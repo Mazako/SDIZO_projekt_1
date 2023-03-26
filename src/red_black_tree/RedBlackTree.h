@@ -10,8 +10,9 @@
 
 class RedBlackTree {
     RedBlackNode *nullNode;
-    RedBlackNode *root;
 public:
+    RedBlackNode *root;
+
     RedBlackTree();
 
     void leftRotate(RedBlackNode *node);
@@ -24,10 +25,17 @@ public:
 
     RedBlackNode *findNode(int key);
 
-    static RedBlackNode *findMin(RedBlackNode *node);
+    RedBlackNode *findMin(RedBlackNode *node);
+
+    RedBlackNode *findMax(RedBlackNode *node);
+
+    void printTreeDiagram();
+
+    int treeDepth(RedBlackNode *root);
+
 
 private:
-    void redBlackTransplant(RedBlackNode *node, RedBlackNode* child);
+    void redBlackTransplant(RedBlackNode *node, RedBlackNode *child);
 
     void deleteFixup(RedBlackNode *node);
 
