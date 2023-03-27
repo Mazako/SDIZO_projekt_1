@@ -1,4 +1,5 @@
 #include <iostream>
+#include <valarray>
 #include "MaxHeap.h"
 
 int MaxHeap::parent(int i) { return (i - 1) / 2; }
@@ -19,7 +20,7 @@ MaxHeap::MaxHeap() {
 }
 
 MaxHeap::~MaxHeap() {
-    delete this->array;
+    delete[] this->array;
 }
 
 void MaxHeap::reallocate(int newSize) {
@@ -59,9 +60,31 @@ void MaxHeap::insert(int data) {
 }
 
 void MaxHeap::printHeap() {
-    for (int i = 0; i < size; i++) {
-        std::cout << array[i] << " ";
+    if (size == 0) {
+        std::cout << "Kopiec jest pusty" << std::endl;
+        return;
     }
+
+    int currentLevel = 0;
+    int elementsInCurrentLevel = 1;
+    int elementsPrinted = 0;
+
+    for (int i = 0; i < size; ++i) {
+        std::cout << array[i] << " ";
+
+        ++elementsPrinted;
+
+        if (elementsPrinted == elementsInCurrentLevel) {
+            std::cout << std::endl;
+
+            ++currentLevel;
+            elementsInCurrentLevel = std::pow(2, currentLevel);
+            elementsPrinted = 0;
+        } else {
+            std::cout << " ";
+        }
+    }
+
     std::cout << std::endl;
 }
 

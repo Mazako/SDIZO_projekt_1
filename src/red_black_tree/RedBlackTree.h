@@ -41,6 +41,8 @@ private:
 
     void insertFixup(RedBlackNode *node);
 
+    void printTreeRecursively(RedBlackNode *node, int s);
+
 };
 
 

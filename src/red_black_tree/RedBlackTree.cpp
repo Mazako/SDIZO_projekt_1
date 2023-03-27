@@ -48,14 +48,6 @@ void RedBlackTree::rightRotate(RedBlackNode *node) {
 
 void RedBlackTree::insert(int key) {
     RedBlackNode *newNode = new RedBlackNode(key, 'r');
-    if (this->root == nullNode) {
-        this->root = newNode;
-        this->root->parent = nullNode;
-        this->root->right = nullNode;
-        this->root->left = nullNode;
-        insertFixup(this->root);
-        return;
-    }
     RedBlackNode *nodePtr = this->root;
     RedBlackNode *parent = this->nullNode;
     while (nodePtr != this->nullNode) {
@@ -67,13 +59,16 @@ void RedBlackTree::insert(int key) {
         }
     }
     newNode->parent = parent;
-    newNode->left = this->nullNode;
-    newNode->right = this->nullNode;
-    if (key > parent->key) {
+    if (parent == this->nullNode) {
+        this->root = newNode;
+    }
+    else if (key > parent->key) {
         parent->right = newNode;
     } else {
         parent->left = newNode;
     }
+    newNode->left = this->nullNode;
+    newNode->right = this->nullNode;
     insertFixup(newNode);
 }
 
@@ -103,13 +98,13 @@ void RedBlackTree::insertFixup(RedBlackNode *node) {
                 node->parent->parent->color = 'r';
                 node = node->parent->parent;
             } else {
-                if (node->parent->right == node) {
+                if (node->parent->left == node) {
                     node = node->parent;
-                    leftRotate(node);
+                    rightRotate(node);
                 }
                 node->parent->color = 'b';
                 node->parent->parent->color = 'r';
-                rightRotate(node->parent->parent);
+                leftRotate(node->parent->parent);
             }
         }
     }
@@ -217,7 +212,7 @@ void RedBlackTree::deleteFixup(RedBlackNode *node) {
             if (sibling->color == 'r') {
                 sibling->color = 'b';
                 node->parent->color = 'r';
-                leftRotate(node->parent);
+                rightRotate(node->parent);
                 sibling = node->parent->left;
             }
             if (sibling->left->color == 'b' && sibling->right->color == 'b') {
@@ -227,13 +222,13 @@ void RedBlackTree::deleteFixup(RedBlackNode *node) {
                 if (sibling->left->color == 'b') {
                     sibling->right->color = 'b';
                     sibling->color = 'r';
-                    rightRotate(sibling);
+                    leftRotate(sibling);
                     sibling = node->parent->left;
                 }
                 sibling->color = node->parent->color;
                 node->parent->color = 'b';
                 sibling->left->color = 'b';
-                leftRotate(node->parent);
+                rightRotate(node->parent);
                 node = this->root;
             }
         }
@@ -256,53 +251,20 @@ int RedBlackTree::treeDepth(RedBlackNode *root) {
 }
 
 void RedBlackTree::printTreeDiagram() {
-    RedBlackNode *rootPtr = this->root;
-    if (rootPtr == nullNode) {
-        std::cout << "The tree is empty." << std::endl;
+    std::cout << this->root->key << std::endl;
+    printTreeRecursively(this->root, 0);
+}
+
+void RedBlackTree::printTreeRecursively(RedBlackNode *node, int s) {
+    if (node == this->nullNode) {
         return;
     }
-    std::queue<RedBlackNode *> q;
-    q.push(rootPtr);
-    int depth = treeDepth(rootPtr);
-    int level = 1;
-    while (!q.empty()) {
-        int nodeCount = q.size();
-        int space = std::pow(2, depth - level + 1) - 1;
-        space += 1;
-        while (nodeCount > 0) {
-            RedBlackNode *node = q.front();
-            q.pop();
-
-            for (int i = 0; i < space; i++) {
-                std::cout << " ";
-            }
-            if (node == nullNode) {
-                std::cout << " ";
-                q.push(nullNode);
-                q.push(nullNode);
-            } else {
-                std::cout << node->key << ":" << node->color;
-                q.push(node->left);
-                q.push(node->right);
-            }
-            for (int i = 0; i < space; i++) {
-                std::cout << " ";
-            }
-            nodeCount--;
-        }
-        std::cout << std::endl;
-        level++;
-        bool isEnd = true;
-        std::queue<RedBlackNode *> tempQueue = q;
-        while (!tempQueue.empty()) {
-            if (tempQueue.front() != nullNode) {
-                isEnd = false;
-                break;
-            }
-            tempQueue.pop();
-        }
-        if (isEnd) {
-            break;
-        }
+    s += 10;
+    printTreeRecursively(node->right, s);
+    std::cout << std::endl;
+    for (int i = 0; i < s; i++) {
+        std::cout << " ";
     }
+    std::cout << node->key << ":" << node->color << "\n";
+    printTreeRecursively(node->left, s);
 }

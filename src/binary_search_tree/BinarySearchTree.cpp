@@ -116,54 +116,7 @@ BstNode *BinarySearchTree::findNode(int data) {
 
 
 void BinarySearchTree::printTreeDiagram() {
-    BstNode *root = this->head;
-    if (root == nullptr) {
-        std::cout << "The tree is empty." << std::endl;
-        return;
-    }
-    std::queue<BstNode *> q;
-    q.push(root);
-    int depth = treeDepth(root);
-    int level = 1;
-    while (!q.empty()) {
-        int nodeCount = q.size();
-        int space = std::pow(2, depth - level + 1) - 1;
-        while (nodeCount > 0) {
-            BstNode *node = q.front();
-            q.pop();
-
-            for (int i = 0; i < space; i++) {
-                std::cout << " ";
-            }
-            if (node == nullptr) {
-                std::cout << " ";
-                q.push(nullptr);
-                q.push(nullptr);
-            } else {
-                std::cout << node->data;
-                q.push(node->left);
-                q.push(node->right);
-            }
-            for (int i = 0; i < space; i++) {
-                std::cout << " ";
-            }
-            nodeCount--;
-        }
-        std::cout << std::endl;
-        level++;
-        bool isEnd = true;
-        std::queue<BstNode *> tempQueue = q;
-        while (!tempQueue.empty()) {
-            if (tempQueue.front() != nullptr) {
-                isEnd = false;
-                break;
-            }
-            tempQueue.pop();
-        }
-        if (isEnd) {
-            break;
-        }
-    }
+    printTreeRecursively(this->head, 0);
 }
 
 int BinarySearchTree::treeDepth(BstNode *root) {
@@ -183,4 +136,19 @@ void BinarySearchTree::deletePostOrder(BstNode *node) {
         deletePostOrder(node->right);
         delete node;
     }
+}
+
+void BinarySearchTree::printTreeRecursively(BstNode* node, int s) {
+    if (node == nullptr) {
+        return;
+    }
+    s += 3;
+    printTreeRecursively(node->right, s);
+    std::cout << std::endl;
+    for (int i = 0; i < s; i++) {
+        std::cout << " ";
+    }
+    std::cout << node->data << "\n";
+    printTreeRecursively(node->left, s);
+
 }

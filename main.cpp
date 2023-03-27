@@ -2,6 +2,9 @@
 #include <vector>
 #include "dynamic_array/client/DynamicArrayClient.h"
 #include "double_linked_list/client/DoubleLinkedListClient.h"
+#include "heap/client/MaxHeapClient.h"
+#include "binary_search_tree/client/BstClient.h"
+#include "red_black_tree/client/RbTreeClient.h"
 
 void startDynamicArrayClient();
 
@@ -69,15 +72,21 @@ void startDoubleLinkedListClient() {
 }
 
 void startHeapClient() {
-
+    auto *maxHeapClient = new MaxHeapClient();
+    maxHeapClient->startMainLoop();
+    delete maxHeapClient;
 }
 
 void startBstClient() {
-
+    auto *bstClient = new BstClient();
+    bstClient->startMainLoop();
+    delete bstClient;
 }
 
 void startRbTreeClient() {
-
+    auto *rbClient = new RbTreeClient();
+    rbClient->startMainLoop();
+    delete rbClient;
 }
 
 void quit() {

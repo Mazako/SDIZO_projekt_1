@@ -22,4 +22,12 @@ add_library(SDIZO_PROJ_1
         dynamic_array/client/DynamicArrayClient.h
         utils/Utils.h
         utils/Utils.cpp
-        double_linked_list/client/DoubleLinkedListClient.h double_linked_list/client/DoubleLinkedListClient.cpp)
+        double_linked_list/client/DoubleLinkedListClient.h
+        double_linked_list/client/DoubleLinkedListClient.cpp
+        heap/client/MaxHeapClient.h
+        heap/client/MaxHeapClient.cpp
+        binary_search_tree/client/BstClient.h
+        binary_search_tree/client/BstClient.cpp
+        red_black_tree/client/RbTreeClient.h
+        red_black_tree/client/RbTreeClient.cpp
+)

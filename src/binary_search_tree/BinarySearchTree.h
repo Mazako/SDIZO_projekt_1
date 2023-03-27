@@ -38,6 +38,8 @@ private:
 
     void deletePostOrder(BstNode* node);
 
+    void printTreeRecursively(BstNode* node, int s);
+
 };
 
 
