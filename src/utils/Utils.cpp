@@ -13,6 +13,9 @@
              throw invalid_argument("Bad file format");
          }
          int count = stoi(line);
+         if (count <= 0) {
+             throw invalid_argument("Too small length of array");
+         }
          auto* vector = new std::vector<int>();
          getline(newFile, line);
          stringstream stream(line);

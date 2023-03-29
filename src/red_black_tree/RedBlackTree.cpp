@@ -251,7 +251,6 @@ int RedBlackTree::treeDepth(RedBlackNode *root) {
 }
 
 void RedBlackTree::printTreeDiagram() {
-    std::cout << this->root->key << std::endl;
     printTreeRecursively(this->root, 0);
 }
 
