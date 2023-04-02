@@ -5,6 +5,7 @@
 #include "heap/client/MaxHeapClient.h"
 #include "binary_search_tree/client/BstClient.h"
 #include "red_black_tree/client/RbTreeClient.h"
+#include "test_performer/DataStructuresTester.h"
 
 void startDynamicArrayClient();
 
@@ -23,29 +24,31 @@ void mainPlaceHolder();
 void printMenuItems();
 
 int main() {
-    std::vector<void (*)()> menuItems = {
-            startDynamicArrayClient,
-            startDoubleLinkedListClient,
-            startHeapClient,
-            startBstClient,
-            startRbTreeClient,
-            quit,
-    };
-    int option;
-    void (*selectedFunction)() = nullptr;
-    do {
-        mainPlaceHolder();
-        printMenuItems();
-        std::cin >> option;
-        getchar();
-        option--;
-        if (option >= menuItems.size()) {
-            std::cerr << "nie ma takiej opcji." << std::endl;
-            continue;
-        }
-        selectedFunction = menuItems[option];
-        selectedFunction();
-    } while (selectedFunction != quit);
+    auto *tester = new DataStructuresTester();
+    tester->dynamicArrayAllTests();
+//    std::vector<void (*)()> menuItems = {
+//            startDynamicArrayClient,
+//            startDoubleLinkedListClient,
+//            startHeapClient,
+//            startBstClient,
+//            startRbTreeClient,
+//            quit,
+//    };
+//    int option;
+//    void (*selectedFunction)() = nullptr;
+//    do {
+//        mainPlaceHolder();
+//        printMenuItems();
+//        std::cin >> option;
+//        getchar();
+//        option--;
+//        if (option >= menuItems.size()) {
+//            std::cerr << "nie ma takiej opcji." << std::endl;
+//            continue;
+//        }
+//        selectedFunction = menuItems[option];
+//        selectedFunction();
+//    } while (selectedFunction != quit);
 
 }
 

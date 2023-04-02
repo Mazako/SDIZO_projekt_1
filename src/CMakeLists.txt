@@ -30,4 +30,4 @@ add_library(SDIZO_PROJ_1
         binary_search_tree/client/BstClient.cpp
         red_black_tree/client/RbTreeClient.h
         red_black_tree/client/RbTreeClient.cpp
-        test_performer/DataStructuresTester.h)
+        test_performer/DataStructuresTester.h test_performer/DataStructuresTester.cpp)

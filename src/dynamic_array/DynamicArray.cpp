@@ -48,8 +48,9 @@ void DynamicArray::addAt(int index, int value) {
     } else if (index > size) {
         throw std::invalid_argument("Size of array is too big");
     } else {
-        DynamicArray::reallocate(++size);
-        for (int i = size - 1; i >= index; i--) {
+        DynamicArray::reallocate(size + 1);
+        size++;
+        for (int i = size - 2; i >= index; i--) {
             array[i + 1] = array[i];
         }
         array[index] = value;

@@ -1,5 +1,6 @@
 #ifndef MAIN_DATASTRUCTURESTESTER_H
 #define MAIN_DATASTRUCTURESTESTER_H
+
 #include <vector>
 #include "dynamic_array/DynamicArray.h"
 #include "double_linked_list/DoubleLinkedList.h"
@@ -8,27 +9,32 @@
 #include "red_black_tree/RedBlackTree.h"
 
 class DataStructuresTester {
-    DynamicArray dynamicArray;
-    DoubleLinkedList doubleLinkedList;
-    MaxHeap heap;
-    BinarySearchTree binarySearchTree;
-    RedBlackTree redBlackTree;
+//    DynamicArray *dynamicArray;
+//    DoubleLinkedList *doubleLinkedList;
+//    MaxHeap *heap;
+//    BinarySearchTree *binarySearchTree;
+//    RedBlackTree *redBlackTree;
     static const std::vector<int> ARRAY_AND_LIST_TEST_RANGES;
+    static const int TEST_REPEATS;
 public:
+    DataStructuresTester();
+
+    ~DataStructuresTester();
+
     //TESTS FOR DYNAMIC ARRAY
-    void dynamicArrayStartInsertionTest(int count);
+    void dynamicArrayStartInsertionTest();
 
-    void dynamicArrayMiddleInsertionTest(int count);
+    void dynamicArrayMiddleInsertionTest();
 
-    void dynamicArrayEndInsertionTest(int count);
+    void dynamicArrayEndInsertionTest();
 
-    void dynamicArrayStartDeletionTest(int count);
+    void dynamicArrayStartDeletionTest();
 
-    void dynamicArrayMiddleDeletionTest(int count);
+    void dynamicArrayMiddleDeletionTest();
 
-    void dynamicArrayEndDeletionTest(int count);
+    void dynamicArrayEndDeletionTest();
 
-    void dynamicArrayAllTests(int count);
+    void dynamicArrayAllTests();
 
     //TESTS FOR DOUBLE LINKED LIST
     void doubleLinkedListStartInsertionTest(int count);
