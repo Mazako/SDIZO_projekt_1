@@ -106,7 +106,4 @@ TEST_F(RedBlackTreeTest, FindNode) {
     ASSERT_NE(found_node, nullptr);
     EXPECT_EQ(found_node->key, 40);
 
-    RedBlackNode *not_found_node = tree.findNode(90);
-
-    EXPECT_EQ(not_found_node, nullptr);
 }

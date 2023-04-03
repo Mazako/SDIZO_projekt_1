@@ -37,19 +37,46 @@ public:
     void dynamicArrayAllTests();
 
     //TESTS FOR DOUBLE LINKED LIST
-    void doubleLinkedListStartInsertionTest(int count);
+    void doubleLinkedListStartInsertionTest();
 
-    void doubleLinkedListMiddleInsertionTest(int count);
+    void doubleLinkedListMiddleInsertionTest();
 
-    void doubleLinkedListEndInsertionTest(int count);
+    void doubleLinkedListEndInsertionTest();
 
-    void doubleLinkedListStartDeletionTest(int count);
+    void doubleLinkedListStartDeletionTest();
 
-    void doubleLinkedListMiddleDeletionTest(int count);
+    void doubleLinkedListMiddleDeletionTest();
 
-    void doubleLinkedListEndDeletionTest(int count);
+    void doubleLinkedListEndDeletionTest();
 
-    void doubleLinkedListAllTests(int count);
+    void doubleLinkedListAllTests();
+
+    //HEAP TESTS
+    void maxHeapInsertTest();
+
+    void maxHeapDeleteTest();
+
+    void maxHeapAllTests();
+
+    // BINARY SEARCH TREE TEST
+    void binarySearchTreeInsertionTest();
+
+    void binarySearchTreeDeletionTest();
+
+    void binarySearchTreeSearchingTest();
+
+    void binarySearchTreeAllTests();
+
+    // RED BLACK TREE TEST
+
+    void redBlackTreeInsertionTest();
+
+    void redBlackTreeDeletionTest();
+
+    void redBlackTreeSearchingTest();
+
+    void redBlackTreeAllTests();
+
 };
 
 

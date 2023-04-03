@@ -5,8 +5,8 @@
 
 class DoubleLinkedList {
     Node *head = nullptr;
-    int size = 0;
 public:
+    int size = 0;
 
     ~DoubleLinkedList();
 

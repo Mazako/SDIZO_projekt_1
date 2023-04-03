@@ -9,6 +9,7 @@ class BinarySearchTree {
 public:
 
     BstNode *head;
+    int size;
 
     BinarySearchTree();
 

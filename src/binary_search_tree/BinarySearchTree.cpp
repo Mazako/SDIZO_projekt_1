@@ -6,6 +6,7 @@
 
 BinarySearchTree::BinarySearchTree() {
     this->head = nullptr;
+    this->size = 0;
 }
 
 void BinarySearchTree::insertNode(int data) {
@@ -31,6 +32,7 @@ void BinarySearchTree::insertNode(int data) {
     } else {
         parentPtr->left = newNode;
     }
+    size++;
 }
 
 void BinarySearchTree::deleteNode(int data) {
@@ -54,6 +56,7 @@ void BinarySearchTree::deleteNode(int data) {
         successor->left->parent = successor;
         delete nodeToDelete;
     }
+    size--;
 }
 
 

@@ -23,32 +23,33 @@ void mainPlaceHolder();
 
 void printMenuItems();
 
+void performTests();
+
 int main() {
-    auto *tester = new DataStructuresTester();
-    tester->dynamicArrayAllTests();
-//    std::vector<void (*)()> menuItems = {
-//            startDynamicArrayClient,
-//            startDoubleLinkedListClient,
-//            startHeapClient,
-//            startBstClient,
-//            startRbTreeClient,
-//            quit,
-//    };
-//    int option;
-//    void (*selectedFunction)() = nullptr;
-//    do {
-//        mainPlaceHolder();
-//        printMenuItems();
-//        std::cin >> option;
-//        getchar();
-//        option--;
-//        if (option >= menuItems.size()) {
-//            std::cerr << "nie ma takiej opcji." << std::endl;
-//            continue;
-//        }
-//        selectedFunction = menuItems[option];
-//        selectedFunction();
-//    } while (selectedFunction != quit);
+    std::vector<void (*)()> menuItems = {
+            startDynamicArrayClient,
+            startDoubleLinkedListClient,
+            startHeapClient,
+            startBstClient,
+            startRbTreeClient,
+            performTests,
+            quit,
+    };
+    int option;
+    void (*selectedFunction)() = nullptr;
+    do {
+        mainPlaceHolder();
+        printMenuItems();
+        std::cin >> option;
+        getchar();
+        option--;
+        if (option >= menuItems.size()) {
+            std::cerr << "nie ma takiej opcji." << std::endl;
+            continue;
+        }
+        selectedFunction = menuItems[option];
+        selectedFunction();
+    } while (selectedFunction != quit);
 
 }
 
@@ -58,7 +59,8 @@ void printMenuItems() {
     std::cout << "3) Klient kopca" << std::endl;
     std::cout << "4) Klient drzewa BST" << std::endl;
     std::cout << "5) Klient drzewa czerwono-czarnego" << std::endl;
-    std::cout << "6) Wyjdz z programu" << std::endl;
+    std::cout << "6) Przeprowadz testy" << std::endl;
+    std::cout << "7) Wyjdz z programu" << std::endl;
     std::cout << "Wybierz opcje:" << std::endl;
 }
 
@@ -90,6 +92,15 @@ void startRbTreeClient() {
     auto *rbClient = new RbTreeClient();
     rbClient->startMainLoop();
     delete rbClient;
+}
+
+void performTests(){
+    auto *tester = new DataStructuresTester();
+    tester->dynamicArrayAllTests();
+    tester->doubleLinkedListAllTests();
+    tester->maxHeapAllTests();
+    tester->binarySearchTreeAllTests();
+    tester->redBlackTreeAllTests();
 }
 
 void quit() {

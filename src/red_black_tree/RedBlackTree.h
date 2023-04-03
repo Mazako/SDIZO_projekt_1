@@ -13,6 +13,8 @@ class RedBlackTree {
 public:
     RedBlackNode *root;
 
+    int size;
+
     RedBlackTree();
 
     void leftRotate(RedBlackNode *node);
@@ -33,6 +35,8 @@ public:
 
     int treeDepth(RedBlackNode *root);
 
+    int getRealSize();
+
 
 private:
     void redBlackTransplant(RedBlackNode *node, RedBlackNode *child);
@@ -43,6 +47,7 @@ private:
 
     void printTreeRecursively(RedBlackNode *node, int s);
 
+    int sizeRecursively(RedBlackNode* node);
 };
 
 

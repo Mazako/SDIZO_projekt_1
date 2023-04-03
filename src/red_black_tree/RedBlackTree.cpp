@@ -9,6 +9,7 @@ RedBlackTree::RedBlackTree() {
     this->root->parent = nullNode;
     this->root->left = nullNode;
     this->root->right = nullNode;
+    this->size = 0;
 
 }
 
@@ -70,6 +71,7 @@ void RedBlackTree::insert(int key) {
     newNode->left = this->nullNode;
     newNode->right = this->nullNode;
     insertFixup(newNode);
+    size++;
 }
 
 void RedBlackTree::insertFixup(RedBlackNode *node) {
@@ -157,6 +159,7 @@ void RedBlackTree::deleteNode(int key) {
         deleteFixup(x);
     }
     delete nodeToDelete;
+    size--;
 
 }
 
@@ -178,7 +181,7 @@ RedBlackNode *RedBlackTree::findNode(int key) {
             return nodePtr;
         }
     }
-    return nullptr;
+    return nullNode;
 }
 
 void RedBlackTree::deleteFixup(RedBlackNode *node) {
@@ -267,3 +270,15 @@ void RedBlackTree::printTreeRecursively(RedBlackNode *node, int s) {
     std::cout << node->key << ":" << node->color << "\n";
     printTreeRecursively(node->left, s);
 }
+
+int RedBlackTree::sizeRecursively(RedBlackNode *node) {
+    if (node == nullNode) {
+        return 0;
+    }
+    return 1 + sizeRecursively(node->left) + sizeRecursively(node->right);
+}
+
+int RedBlackTree::getRealSize() {
+    return sizeRecursively(this->root);
+}
+

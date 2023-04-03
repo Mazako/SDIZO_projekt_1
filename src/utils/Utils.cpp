@@ -35,10 +35,12 @@ namespace reader {
 
     double calculate_avg(std::vector<long> *elements) {
         double total = .0;
+        int n = 0;
         for (long element: *elements) {
             total += (double) element;
+            n++;
         }
-        return total / (double) elements->size();
+        return total / (double) n;
     }
 
     void writeArrayToCsvFile(std::vector<double> *results, std::string fileName, std::vector<std::string> &headers) {
@@ -62,7 +64,7 @@ namespace reader {
     int getRandomInt() {
         std::random_device device;
         std::mt19937 rng(device());
-        std::uniform_int_distribution<> distribution(1, INT16_MAX);
+        std::uniform_int_distribution<> distribution(0, INT16_MAX);
         return distribution(rng);
     }
 }
