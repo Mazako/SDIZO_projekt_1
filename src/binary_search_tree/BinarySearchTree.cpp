@@ -11,23 +11,24 @@ BinarySearchTree::BinarySearchTree() {
 
 void BinarySearchTree::insertNode(int data) {
     BstNode *newNode = new BstNode(data);
-    if (this->head == nullptr) {
-        this->head = newNode;
-        return;
-    }
     BstNode *headPtr = head;
     BstNode *parentPtr = nullptr;
     while (headPtr != nullptr) {
         parentPtr = headPtr;
         if (data > headPtr->data) {
             headPtr = headPtr->right;
-        } else {
+        } else if (data < headPtr ->data){
             headPtr = headPtr->left;
+        } else {
+            throw std::invalid_argument("Node already exists");
         }
     }
 
     newNode->parent = parentPtr;
-    if (data > parentPtr->data) {
+    if (parentPtr == nullptr) {
+        this->head = newNode;
+    }
+    else if (data > parentPtr->data) {
         parentPtr->right = newNode;
     } else {
         parentPtr->left = newNode;
@@ -54,8 +55,10 @@ void BinarySearchTree::deleteNode(int data) {
         transplant(nodeToDelete, successor);
         successor->left = nodeToDelete->left;
         successor->left->parent = successor;
-        delete nodeToDelete;
     }
+    nodeToDelete->left = nullptr;
+    nodeToDelete->right = nullptr;
+    delete nodeToDelete;
     size--;
 }
 
@@ -130,13 +133,15 @@ int BinarySearchTree::treeDepth(BstNode *root) {
 }
 
 BinarySearchTree::~BinarySearchTree() {
-    deletePostOrder(this->head);
+    delete this->head;
+    this->head = nullptr;
 }
 
-void BinarySearchTree::deletePostOrder(BstNode *node) {
+void BinarySearchTree::deleteRec(BstNode *node) {
     if (node != nullptr) {
-        deletePostOrder(node->left);
-        deletePostOrder(node->right);
+        node->parent = nullptr;
+        deleteRec(node->left);
+        deleteRec(node->right);
         delete node;
     }
 }

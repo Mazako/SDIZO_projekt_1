@@ -17,6 +17,8 @@ public:
 
     RedBlackTree();
 
+    ~RedBlackTree();
+
     void leftRotate(RedBlackNode *node);
 
     void rightRotate(RedBlackNode *node);
@@ -48,6 +50,8 @@ private:
     void printTreeRecursively(RedBlackNode *node, int s);
 
     int sizeRecursively(RedBlackNode* node);
+
+    void deleteRec(RedBlackNode* node);
 };
 
 

@@ -69,7 +69,11 @@ void RbTreeClient::insertNode() {
     int value;
     cout << "Wpisz wartosc:";
     cin >> value;
-    this->tree->insert(value);
+    try {
+        this->tree->insert(value);
+    } catch (exception &e) {
+        cout << "Podana wartosc juz istnieje" << endl;
+    }
 }
 
 void RbTreeClient::deleteNode() {

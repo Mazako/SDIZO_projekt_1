@@ -8,7 +8,8 @@ TEST(AverageTest, test) {
 }
 
 TEST(RandTest, test) {
-    while (true) {
-        std::cout << reader::getRandomInt() << std::endl;
+    int value = 0;
+    while (value != 100) {
+        value = reader::getRandomInt();
     }
 }

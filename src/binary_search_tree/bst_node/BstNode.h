@@ -10,9 +10,8 @@ public:
     BstNode *parent;
 
     BstNode();
-
     BstNode(int data);
-
+    ~BstNode();
 };
 
 

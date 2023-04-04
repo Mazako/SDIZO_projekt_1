@@ -69,7 +69,11 @@ void BstClient::insertNode() {
     int value;
     cout << "Wpisz wartosc:";
     cin >> value;
-    this->bst->insertNode(value);
+    try {
+        this->bst->insertNode(value);
+    } catch (exception &e) {
+        cout << "Podana wartosc juz istnieje w drzewie" << endl;
+    }
 }
 
 void BstClient::deleteNode() {

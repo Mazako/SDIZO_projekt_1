@@ -41,7 +41,7 @@ void RedBlackTree::rightRotate(RedBlackNode *node) {
     else if (node->parent->left == node) {
         node->parent->left = pivot;
     } else {
-        node->parent->right = node;
+        node->parent->right = pivot;
     }
     pivot->right = node;
     node->parent = pivot;
@@ -55,8 +55,10 @@ void RedBlackTree::insert(int key) {
         parent = nodePtr;
         if (key > nodePtr->key) {
             nodePtr = nodePtr->right;
-        } else {
+        } else if (key < nodePtr->key){
             nodePtr = nodePtr->left;
+        } else {
+            throw std::invalid_argument("Node exists");
         }
     }
     newNode->parent = parent;
@@ -280,5 +282,18 @@ int RedBlackTree::sizeRecursively(RedBlackNode *node) {
 
 int RedBlackTree::getRealSize() {
     return sizeRecursively(this->root);
+}
+
+RedBlackTree::~RedBlackTree() {
+    deleteRec(this->root);
+    delete this->nullNode;
+}
+
+void RedBlackTree::deleteRec(RedBlackNode *node) {
+    if (node != nullNode) {
+        deleteRec(node ->left);
+        deleteRec(node ->right);
+        delete node;
+    }
 }
 

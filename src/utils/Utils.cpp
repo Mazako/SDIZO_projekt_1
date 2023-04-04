@@ -64,7 +64,7 @@ namespace reader {
     int getRandomInt() {
         std::random_device device;
         std::mt19937 rng(device());
-        std::uniform_int_distribution<> distribution(0, INT16_MAX);
+        std::uniform_int_distribution<> distribution(0, INT32_MAX);
         return distribution(rng);
     }
 }

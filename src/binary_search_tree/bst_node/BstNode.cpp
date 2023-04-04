@@ -14,3 +14,8 @@ BstNode::BstNode(int data) {
     this->right = nullptr;
     this->parent = nullptr;
 }
+
+BstNode::~BstNode() {
+    delete this->left;
+    delete this->right;
+}

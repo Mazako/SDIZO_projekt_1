@@ -14,7 +14,7 @@ class DataStructuresTester {
 //    MaxHeap *heap;
 //    BinarySearchTree *binarySearchTree;
 //    RedBlackTree *redBlackTree;
-    static const std::vector<int> ARRAY_AND_LIST_TEST_RANGES;
+    static const std::vector<int> RANGES;
     static const int TEST_REPEATS;
 public:
     DataStructuresTester();

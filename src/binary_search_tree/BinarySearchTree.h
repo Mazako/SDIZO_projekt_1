@@ -37,7 +37,7 @@ private:
 
     void printInorderRecursively(BstNode *node);
 
-    void deletePostOrder(BstNode* node);
+    void deleteRec(BstNode* node);
 
     void printTreeRecursively(BstNode* node, int s);
 

@@ -96,9 +96,9 @@ void startRbTreeClient() {
 
 void performTests(){
     auto *tester = new DataStructuresTester();
-    tester->dynamicArrayAllTests();
-    tester->doubleLinkedListAllTests();
-    tester->maxHeapAllTests();
+//    tester->dynamicArrayAllTests();
+//    tester->doubleLinkedListAllTests();
+//    tester->maxHeapAllTests();
     tester->binarySearchTreeAllTests();
     tester->redBlackTreeAllTests();
 }
