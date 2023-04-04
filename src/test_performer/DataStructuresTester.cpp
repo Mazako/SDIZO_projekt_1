@@ -27,26 +27,26 @@ void DataStructuresTester::dynamicArrayStartInsertionTest() {
     for (int size: RANGES) {
         std::cout << "INSERTION IN START OF DYNAMIC ARRAY TEST (" << size << ")" << std::endl;
         while (size > array->size) {
-            array->add(reader::getRandomInt());
+            array->add(sdizoUtils::getRandomInt());
         }
         std::cout << array->size << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
             auto start = high_resolution_clock::now();
-            array->addAt(0, reader::getRandomInt());
+            array->addAt(0, sdizoUtils::getRandomInt());
             auto end = high_resolution_clock::now();
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete array;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "dynamic_array_add_start.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "dynamic_array_add_start.csv",
+                                    headers
     );
 
 }
@@ -62,26 +62,26 @@ void DataStructuresTester::dynamicArrayMiddleInsertionTest() {
     for (int size: RANGES) {
         std::cout << "INSERTION IN MID OF DYNAMIC ARRAY TEST (" << size << ")" << std::endl;
         while (size > array->size) {
-            array->add(reader::getRandomInt());
+            array->add(sdizoUtils::getRandomInt());
         }
         std::cout << array->size << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
             auto start = high_resolution_clock::now();
-            array->addAt(size / 2, reader::getRandomInt());
+            array->addAt(size / 2, sdizoUtils::getRandomInt());
             auto end = high_resolution_clock::now();
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete array;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "dynamic_array_add_mid.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "dynamic_array_add_mid.csv",
+                                    headers
     );
 }
 
@@ -96,26 +96,26 @@ void DataStructuresTester::dynamicArrayEndInsertionTest() {
     for (int size: RANGES) {
         std::cout << "INSERTION IN END OF DYNAMIC ARRAY TEST (" << size << ")" << std::endl;
         while (size > array->size) {
-            array->add(reader::getRandomInt());
+            array->add(sdizoUtils::getRandomInt());
         }
         std::cout << array->size << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
             auto start = high_resolution_clock::now();
-            array->addAt(size - 1, reader::getRandomInt());
+            array->addAt(size - 1, sdizoUtils::getRandomInt());
             size++;
             auto end = high_resolution_clock::now();
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete array;
-    reader::writeArrayToCsvFile(&testResults,
-                                "dynamic_array_add_end.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "dynamic_array_add_end.csv",
+                                    headers
     );
 
 }
@@ -131,7 +131,7 @@ void DataStructuresTester::dynamicArrayStartDeletionTest() {
     for (int size: RANGES) {
         std::cout << "DELETION IN START OF DYNAMIC ARRAY TEST (" << size << ")" << std::endl;
         while (size > array->size) {
-            array->add(reader::getRandomInt());
+            array->add(sdizoUtils::getRandomInt());
         }
         std::cout << array->size << std::endl;
         std::vector<long> measuredTimes;
@@ -143,13 +143,13 @@ void DataStructuresTester::dynamicArrayStartDeletionTest() {
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete array;
-    reader::writeArrayToCsvFile(&testResults,
-                                "dynamic_array_delete_start.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "dynamic_array_delete_start.csv",
+                                    headers
     );
 
 }
@@ -165,7 +165,7 @@ void DataStructuresTester::dynamicArrayMiddleDeletionTest() {
     for (int size: RANGES) {
         std::cout << "DELETION IN MID OF DYNAMIC ARRAY TEST (" << size << ")" << std::endl;
         while (size > array->size) {
-            array->add(reader::getRandomInt());
+            array->add(sdizoUtils::getRandomInt());
         }
         std::cout << array->size << std::endl;
         std::vector<long> measuredTimes;
@@ -177,14 +177,14 @@ void DataStructuresTester::dynamicArrayMiddleDeletionTest() {
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete array;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "dynamic_array_delete_mid.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "dynamic_array_delete_mid.csv",
+                                    headers
     );
 
 }
@@ -200,7 +200,7 @@ void DataStructuresTester::dynamicArrayEndDeletionTest() {
     for (int size: RANGES) {
         std::cout << "DELETION IN MID OF DYNAMIC ARRAY TEST (" << size << ")" << std::endl;
         while (size > array->size) {
-            array->add(reader::getRandomInt());
+            array->add(sdizoUtils::getRandomInt());
         }
         std::cout << array->size << std::endl;
         std::vector<long> measuredTimes;
@@ -213,13 +213,13 @@ void DataStructuresTester::dynamicArrayEndDeletionTest() {
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete array;
-    reader::writeArrayToCsvFile(&testResults,
-                                "dynamic_array_delete_end.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "dynamic_array_delete_end.csv",
+                                    headers
     );
 
 }
@@ -245,26 +245,26 @@ void DataStructuresTester::doubleLinkedListStartInsertionTest() {
     for (int size: RANGES) {
         std::cout << "INSERTION IN START OF DOUBLE LINKED LIST TEST (" << size << ")" << std::endl;
         while (size > list->size) {
-            list->push(reader::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
         }
         std::cout << list->size << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
             auto start = high_resolution_clock::now();
-            list->unshift(reader::getRandomInt());
+            list->unshift(sdizoUtils::getRandomInt());
             auto end = high_resolution_clock::now();
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete list;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "double_linked_list_add_start.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "double_linked_list_add_start.csv",
+                                    headers
     );
 }
 
@@ -279,26 +279,26 @@ void DataStructuresTester::doubleLinkedListEndInsertionTest() {
     for (int size: RANGES) {
         std::cout << "INSERTION IN END OF DOUBLE LINKED LIST TEST (" << size << ")" << std::endl;
         while (size > list->size) {
-            list->push(reader::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
         }
         std::cout << list->size << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
             auto start = high_resolution_clock::now();
-            list->unshift(reader::getRandomInt());
+            list->unshift(sdizoUtils::getRandomInt());
             auto end = high_resolution_clock::now();
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete list;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "double_linked_list_add_end.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "double_linked_list_add_end.csv",
+                                    headers
     );
 }
 
@@ -313,26 +313,26 @@ void DataStructuresTester::doubleLinkedListMiddleInsertionTest() {
     for (int size: RANGES) {
         std::cout << "INSERTION IN MID OF DOUBLE LINKED LIST TEST (" << size << ")" << std::endl;
         while (size > list->size) {
-            list->push(reader::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
         }
         std::cout << list->size << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
             auto start = high_resolution_clock::now();
-            list->addAt(size / 2, reader::getRandomInt());
+            list->addAt(size / 2, sdizoUtils::getRandomInt());
             auto end = high_resolution_clock::now();
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete list;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "double_linked_list_add_mid.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "double_linked_list_add_mid.csv",
+                                    headers
     );
 }
 
@@ -347,7 +347,7 @@ void DataStructuresTester::doubleLinkedListStartDeletionTest() {
     for (int size: RANGES) {
         std::cout << "DELETION IN START OF DOUBLE LINKED LIST TEST (" << size << ")" << std::endl;
         while (size > list->size) {
-            list->push(reader::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
         }
         std::cout << list->size << std::endl;
         std::vector<long> measuredTimes;
@@ -358,16 +358,16 @@ void DataStructuresTester::doubleLinkedListStartDeletionTest() {
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
-            list->push(reader::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete list;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "double_linked_list_delete_start.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "double_linked_list_delete_start.csv",
+                                    headers
     );
 }
 
@@ -382,7 +382,7 @@ void DataStructuresTester::doubleLinkedListEndDeletionTest() {
     for (int size: RANGES) {
         std::cout << "DELETION IN END OF DOUBLE LINKED LIST TEST (" << size << ")" << std::endl;
         while (size > list->size) {
-            list->push(reader::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
         }
         std::cout << list->size << std::endl;
         std::vector<long> measuredTimes;
@@ -393,16 +393,16 @@ void DataStructuresTester::doubleLinkedListEndDeletionTest() {
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
-            list->push(reader::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete list;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "double_linked_list_delete_end.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "double_linked_list_delete_end.csv",
+                                    headers
     );
 }
 
@@ -417,7 +417,7 @@ void DataStructuresTester::doubleLinkedListMiddleDeletionTest() {
     for (int size: RANGES) {
         std::cout << "INSERTION IN END OF DOUBLE LINKED LIST TEST (" << size << ")" << std::endl;
         while (size > list->size) {
-            list->push(reader::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
         }
         std::cout << list->size << std::endl;
         std::vector<long> measuredTimes;
@@ -428,16 +428,16 @@ void DataStructuresTester::doubleLinkedListMiddleDeletionTest() {
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
-            list->push(reader::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete list;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "double_linked_list_delete_mid.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "double_linked_list_delete_mid.csv",
+                                    headers
     );
 }
 
@@ -462,27 +462,27 @@ void DataStructuresTester::maxHeapInsertTest() {
     for (int size: RANGES) {
         std::cout << "INSERTION IN MAX HEAP TEST (" << size << ")" << std::endl;
         while (size > heap->getSize()) {
-            heap->insert(reader::getRandomInt());
+            heap->insert(sdizoUtils::getRandomInt());
         }
         std::cout << heap->getSize() << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
             auto start = high_resolution_clock::now();
-            heap->insert(reader::getRandomInt());
+            heap->insert(sdizoUtils::getRandomInt());
             auto end = high_resolution_clock::now();
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
             heap->removeMax();
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete heap;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "max_heap_insert_test.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "max_heap_insert_test.csv",
+                                    headers
     );
 }
 
@@ -497,7 +497,7 @@ void DataStructuresTester::maxHeapDeleteTest() {
     for (int size: RANGES) {
         std::cout << "INSERTION IN MAX HEAP TEST (" << size << ")" << std::endl;
         while (size > heap->getSize()) {
-            heap->insert(reader::getRandomInt());
+            heap->insert(sdizoUtils::getRandomInt());
         }
         std::cout << heap->getSize() << std::endl;
         std::vector<long> measuredTimes;
@@ -508,16 +508,16 @@ void DataStructuresTester::maxHeapDeleteTest() {
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
             measuredTimes.push_back(time);
-            heap->insert(reader::getRandomInt());
+            heap->insert(sdizoUtils::getRandomInt());
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete heap;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "max_heap_delete_test.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "max_heap_delete_test.csv",
+                                    headers
     );
 }
 
@@ -538,7 +538,7 @@ void DataStructuresTester::binarySearchTreeInsertionTest() {
         std::cout << "INSERTION IN BINARY SEARCH TREE TEST (" << size << ")" << std::endl;
         while (size > bst->size) {
             try {
-                bst->insertNode(reader::getRandomInt());
+                bst->insertNode(sdizoUtils::getRandomInt());
             } catch (std::exception &e) {
                 continue;
             }
@@ -569,14 +569,14 @@ void DataStructuresTester::binarySearchTreeInsertionTest() {
             }
             bst->deleteNode(value);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete bst;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "bst_insert_test.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "bst_insert_test.csv",
+                                    headers
     );
 }
 
@@ -592,7 +592,7 @@ void DataStructuresTester::binarySearchTreeDeletionTest() {
         std::cout << "DELETION IN BINARY SEARCH TREE TEST (" << size << ")" << std::endl;
         while (size > bst->size) {
             try {
-                bst->insertNode(reader::getRandomInt());
+                bst->insertNode(sdizoUtils::getRandomInt());
             } catch (std::exception &e) {
                 continue;
             }
@@ -600,7 +600,7 @@ void DataStructuresTester::binarySearchTreeDeletionTest() {
         std::cout << bst->size << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
-            int value = reader::getRandomInt();
+            int value = sdizoUtils::getRandomInt();
             try {
                 bst->insertNode(value);
             } catch (std::exception &e) {
@@ -615,14 +615,14 @@ void DataStructuresTester::binarySearchTreeDeletionTest() {
             measuredTimes.push_back(time);
             bst->insertNode(value);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete bst;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "bst_delete_test.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "bst_delete_test.csv",
+                                    headers
     );
 }
 
@@ -638,7 +638,7 @@ void DataStructuresTester::binarySearchTreeSearchingTest() {
         std::cout << "SEARCHING IN BINARY SEARCH TREE TEST (" << size << ")" << std::endl;
         while (size > bst->size) {
             try {
-                bst->insertNode(reader::getRandomInt());
+                bst->insertNode(sdizoUtils::getRandomInt());
             } catch (std::exception &e) {
                 continue;
             }
@@ -646,7 +646,7 @@ void DataStructuresTester::binarySearchTreeSearchingTest() {
         std::cout << bst->size << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
-            int value = reader::getRandomInt();
+            int value = sdizoUtils::getRandomInt();
             try {
                 bst->insertNode(value);
             } catch (std::exception &e) {
@@ -661,14 +661,14 @@ void DataStructuresTester::binarySearchTreeSearchingTest() {
             measuredTimes.push_back(time);
             bst->deleteNode(value);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete bst;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "bst_search_test.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "bst_search_test.csv",
+                                    headers
     );
 }
 
@@ -692,14 +692,14 @@ void DataStructuresTester::redBlackTreeInsertionTest() {
         std::cout << "INSERTION IN RED BLACK TREE TEST (" << size << ")" << std::endl;
         while (rbt->size < size) {
             try {
-                rbt->insert(reader::getRandomInt());
+                rbt->insert(sdizoUtils::getRandomInt());
             } catch (std::exception &e) {
                 continue;
             }
         }
         std::cout << rbt->getRealSize() << std::endl;
         std::vector<long> measuredTimes;
-        int value = reader::getRandomInt();
+        int value = sdizoUtils::getRandomInt();
         while (true) {
             try {
                 rbt->insert(value);
@@ -718,14 +718,14 @@ void DataStructuresTester::redBlackTreeInsertionTest() {
             measuredTimes.push_back(time);
             rbt->deleteNode(value);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete rbt;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "rbt_insert_test.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "rbt_insert_test.csv",
+                                    headers
     );
 }
 
@@ -741,7 +741,7 @@ void DataStructuresTester::redBlackTreeSearchingTest() {
         std::cout << "SEARCHING IN RED BLACK TREE TEST (" << size << ")" << std::endl;
         while (rbt->size < size) {
             try {
-                rbt->insert(reader::getRandomInt());
+                rbt->insert(sdizoUtils::getRandomInt());
             } catch (std::exception &e) {
                 continue;
             }
@@ -749,7 +749,7 @@ void DataStructuresTester::redBlackTreeSearchingTest() {
         std::cout << rbt->getRealSize() << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
-            int value = reader::getRandomInt();
+            int value = sdizoUtils::getRandomInt();
             try {
                 rbt->insert(value);
             } catch (std::exception& e) {
@@ -764,14 +764,14 @@ void DataStructuresTester::redBlackTreeSearchingTest() {
             measuredTimes.push_back(time);
             rbt->deleteNode(value);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete rbt;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "rbt_delete_test.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "rbt_delete_test.csv",
+                                    headers
     );
 }
 
@@ -787,7 +787,7 @@ void DataStructuresTester::redBlackTreeDeletionTest() {
         std::cout << "DELETION IN RED BLACK TREE TEST (" << size << ")" << std::endl;
         while (rbt->size < size) {
             try {
-                rbt->insert(reader::getRandomInt());
+                rbt->insert(sdizoUtils::getRandomInt());
             } catch (std::exception &e) {
                 continue;
             }
@@ -795,7 +795,7 @@ void DataStructuresTester::redBlackTreeDeletionTest() {
         std::cout << rbt->getRealSize() << std::endl;
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
-            int value = reader::getRandomInt();
+            int value = sdizoUtils::getRandomInt();
             try {
                 rbt->insert(value);
             } catch (std::exception& e) {
@@ -808,14 +808,14 @@ void DataStructuresTester::redBlackTreeDeletionTest() {
             long time = duration.count();
             measuredTimes.push_back(time);
         }
-        double result = reader::calculate_avg(&measuredTimes);
+        double result = sdizoUtils::calculate_avg(&measuredTimes);
         testResults.push_back(result);
     }
     delete rbt;
 
-    reader::writeArrayToCsvFile(&testResults,
-                                "rbt_search_test.csv",
-                                headers
+    sdizoUtils::writeArrayToCsvFile(&testResults,
+                                    "rbt_search_test.csv",
+                                    headers
     );
 }
 

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <random>
 
-namespace reader {
+namespace sdizoUtils {
     std::vector<int> *readArrayFromFile(const std::string &filename) {
         using namespace std;
         string line;

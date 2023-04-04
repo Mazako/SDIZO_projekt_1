@@ -86,7 +86,7 @@ void MaxHeapClient::readHeapFromFile() {
     cout << "Podaj nazwe pliku:";
     getline(cin, filename);
     try {
-        auto *vector = reader::readArrayFromFile(filename);
+        auto *vector = sdizoUtils::readArrayFromFile(filename);
         delete this->heap;
         this->heap = new MaxHeap();
         for (int value: *vector) {

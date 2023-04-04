@@ -86,7 +86,7 @@ void DynamicArrayClient::readFromFile() {
     string filename;
     getline(cin, filename);
     try {
-        auto result = reader::readArrayFromFile(filename);
+        auto result = sdizoUtils::readArrayFromFile(filename);
         delete this->array;
         this->array = new DynamicArray();
         for (int i: *result) {

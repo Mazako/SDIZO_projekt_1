@@ -143,7 +143,7 @@ void DoubleLinkedListClient::readFromFile() {
     string filename;
     getline(cin, filename);
     try {
-        auto result = reader::readArrayFromFile(filename);
+        auto result = sdizoUtils::readArrayFromFile(filename);
         delete this->list;
         this->list = new DoubleLinkedList();
         for (int i : *result) {

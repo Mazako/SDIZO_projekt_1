@@ -94,7 +94,7 @@ void RbTreeClient::readTreeFromFile() {
     cout << "Podaj nazwe pliku:";
     getline(cin, filename);
     try {
-        auto *vector = reader::readArrayFromFile(filename);
+        auto *vector = sdizoUtils::readArrayFromFile(filename);
         delete this->tree;
         this->tree = new RedBlackTree();
         for (int value: *vector) {

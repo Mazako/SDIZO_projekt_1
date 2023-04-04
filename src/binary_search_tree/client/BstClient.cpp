@@ -94,7 +94,7 @@ void BstClient::readTreeFromFile() {
     cout << "Podaj nazwe pliku:";
     getline(cin, filename);
     try {
-        auto *vector = reader::readArrayFromFile(filename);
+        auto *vector = sdizoUtils::readArrayFromFile(filename);
         delete this->bst;
         this->bst = new BinarySearchTree();
         for (int value: *vector) {
