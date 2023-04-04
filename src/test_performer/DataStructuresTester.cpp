@@ -285,7 +285,7 @@ void DataStructuresTester::doubleLinkedListEndInsertionTest() {
         std::vector<long> measuredTimes;
         for (int i = 0; i < TEST_REPEATS; i++) {
             auto start = high_resolution_clock::now();
-            list->unshift(sdizoUtils::getRandomInt());
+            list->push(sdizoUtils::getRandomInt());
             auto end = high_resolution_clock::now();
             auto duration = duration_cast<nanoseconds>(end - start);
             long time = duration.count();
