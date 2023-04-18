@@ -266,7 +266,7 @@ void RedBlackTree::printTreeRecursively(RedBlackNode *node, int s) {
     s += 10;
     printTreeRecursively(node->right, s);
     std::cout << std::endl;
-    for (int i = 0; i < s; i++) {
+    for (int i = 10; i < s; i++) {
         std::cout << " ";
     }
     std::cout << node->key << ":" << node->color << "\n";
